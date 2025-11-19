@@ -1,38 +1,50 @@
-# sv
+# Simple Notes Frontend (Svelte)
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A modern, single-page note-taking app with a sidebar list and a markdown editor preview, styled with the Ocean Professional theme.
 
-## Creating a project
+## Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+- Create, view, edit, and delete notes
+- Local persistence using `localStorage`
+- Autosave while typing (400ms debounce)
+- Markdown textarea with live preview (lightweight renderer)
+- Keyboard shortcuts:
+  - Ctrl/Cmd+N: New note
+  - Ctrl/Cmd+S: Save current note
+- Responsive layout (sidebar collapses on narrow screens)
+- Ocean Professional theme (primary #2563EB, secondary #F59E0B)
+
+## Getting Started
+
+Install dependencies and start the dev server:
 
 ```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
+npm install
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+Open the app at http://localhost:3000 (or the configured port).
 
-To create a production version of your app:
+## Environment Variables
+
+The app reads optional environment variables via Vite:
+- `VITE_API_BASE` (if a backend exists; not required for localStorage mode)
+- `VITE_BACKEND_URL`, `VITE_FRONTEND_URL`, `VITE_NODE_ENV`, etc. are read if present for display or future integration.
+
+No environment variables are required for localStorage mode; sensible defaults are used.
+
+## Build
 
 ```bash
 npm run build
+npm run preview
 ```
 
-You can preview the production build with `npm run preview`.
+## Notes about Data
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+Notes are saved in the browser's localStorage under the key `simple_notes_v1`. Clearing browser data will remove them.
+
+## Accessibility
+
+- Keyboard navigable and ARIA roles for main regions
+- Focus-visible states on interactive elements
